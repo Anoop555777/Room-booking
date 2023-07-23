@@ -75,7 +75,7 @@ const GlobalStyle = createGlobalStyle`
 
 --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
 --shadow-md: 0px 0.6rem 2.4rem rgba(0, 0, 0, 0.3);
---shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.4);
+--shadow-lg: 0 3.2rem 4.8rem  rgba(0, 0, 0, 0.4);
 
 --image-grayscale: 10%;
 --image-opacity: 90%;

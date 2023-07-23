@@ -11,6 +11,7 @@ const StyleSidebar = styled.aside`
   gap: 3.2rem;
   padding: 3.2rem 2.4rem;
   background-color: var(--color-grey-0);
+  box-shadow: var(--shadow-lg);
 `;
 const SideBar = () => {
   return (

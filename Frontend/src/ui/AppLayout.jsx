@@ -12,7 +12,7 @@ const StyleAppLayout = styled.div`
 
 const Main = styled.main`
   padding: 3.2rem;
-  background-color: var(-color-grey-50);
+  background-color: var(--color-grey-50);
   overflow: scroll;
 `;
 
