@@ -6,9 +6,11 @@ import Bookings from "./pages/Bookings";
 import Cabins from "./pages/Cabins";
 import Users from "./pages/Users";
 import Settings from "./pages/Settings";
+import Login from "./pages/Login";
+import { DarkModeProvider } from "./context/DarkModeContext";
 function App() {
   return (
-    <>
+    <DarkModeProvider>
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
@@ -20,9 +22,10 @@ function App() {
             <Route path="users" element={<Users />} />
             <Route path="settings" element={<Settings />} />
           </Route>
+          <Route path="login" element={<Login />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </DarkModeProvider>
   );
 }
 

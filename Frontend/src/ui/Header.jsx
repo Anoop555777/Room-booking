@@ -1,5 +1,8 @@
 import React from "react";
 import { styled } from "styled-components";
+import UserAvatar from "../features/authentication/UserAvatar";
+import DarkModeButton from "./DarkModeButton";
+import HeaderMenu from "./HeaderMenu";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -8,10 +11,17 @@ const StyledHeader = styled.header`
   padding: 1.2rem 3.2rem;
   border-bottom: 1px solid var(-color-grey-100);
   background-color: var(-color-grey-0);
+  gap: 1.2rem;
 `;
 
 const Header = () => {
-  return <StyledHeader>Header</StyledHeader>;
+  return (
+    <StyledHeader>
+      <UserAvatar />
+      <DarkModeButton />
+      <HeaderMenu />
+    </StyledHeader>
+  );
 };
 
 export default Header;
