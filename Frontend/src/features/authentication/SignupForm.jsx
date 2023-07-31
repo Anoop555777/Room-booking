@@ -1,5 +1,5 @@
 import React from "react";
-import { HiEnvelope, HiLockClosed } from "react-icons/hi2";
+import { HiEnvelope, HiLockClosed, HiUser } from "react-icons/hi2";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
@@ -94,9 +94,17 @@ const SignIn = styled.div`
   }
 `;
 
-const LoginForm = () => {
+const SignupForm = () => {
   return (
     <Form>
+      <FormGroup>
+        <Span>
+          <HiUser />
+        </Span>
+        <FormInput type="text" id="name" placeholder="" />
+        <Label htmlFor="name">Name</Label>
+      </FormGroup>
+
       <FormGroup>
         <Span>
           <HiEnvelope />
@@ -111,15 +119,24 @@ const LoginForm = () => {
         <FormInput type="password" id="password" placeholder="" />
         <Label htmlFor="password">Password</Label>
       </FormGroup>
-      <Button type="submit">Login</Button>
+
+      <FormGroup>
+        <Span>
+          <HiLockClosed />
+        </Span>
+        <FormInput type="password" id="confirmpassword" placeholder="" />
+        <Label htmlFor="confirmpassword">Confirm Password</Label>
+      </FormGroup>
+
+      <Button type="submit">SignUp</Button>
       <SignIn>
         <p>
-          Don't have an account? &nbsp;
-          <StyledNavLink to="/signup">Register</StyledNavLink>
+          if you have an account? &nbsp;
+          <StyledNavLink to="/login">Login</StyledNavLink>
         </p>
       </SignIn>
     </Form>
   );
 };
 
-export default LoginForm;
+export default SignupForm;

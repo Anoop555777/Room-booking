@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 import Heading from "../ui/Heading";
-import LoginForm from "../features/authentication/LoginForm";
-const LoginBackground = styled.main`
+import SignupForm from "../features/authentication/SignupForm";
+const SignupBackground = styled.main`
   min-height: 100dvh;
   width: 100%;
   position: relative;
@@ -12,7 +12,7 @@ const LoginBackground = styled.main`
   opacity: 0.9;
 `;
 
-const LoginLayout = styled.div`
+const SignupLayout = styled.div`
   padding: 2.4rem 4.8rem;
   width: 40%;
   min-height: 70dvh;
@@ -33,15 +33,15 @@ const LoginLayout = styled.div`
   gap: 3.2rem;
 `;
 
-const Login = () => {
+const Signup = () => {
   return (
-    <LoginBackground>
-      <LoginLayout>
-        <Heading as="h4">Login to your account</Heading>
-        <LoginForm />
-      </LoginLayout>
-    </LoginBackground>
+    <SignupBackground>
+      <SignupLayout>
+        <Heading as="h4">Sign Up</Heading>
+        <SignupForm />
+      </SignupLayout>
+    </SignupBackground>
   );
 };
 
-export default Login;
+export default Signup;
