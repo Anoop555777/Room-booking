@@ -2,7 +2,8 @@ import React from "react";
 import { HiEnvelope, HiLockClosed, HiUser } from "react-icons/hi2";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-
+import { useForm } from "react-hook-form";
+import { useSignin } from "./useSignin";
 const Form = styled.form`
   width: 100%;
 `;
@@ -20,10 +21,14 @@ const FormInput = styled.input`
   font-weight: 600;
   padding: 1.2rem 0.8rem;
 
-  background: transparent;
+  background: transparent !important;
   border: none;
   font-size: inherit;
   outline: none;
+
+  &:auto-fill {
+    background: transparent;
+  }
 
   &:focus {
     outline: none;
@@ -94,38 +99,104 @@ const SignIn = styled.div`
   }
 `;
 
+const Error = styled.span`
+  font-size: 1.6rem;
+  color: var(--color-red-700);
+`;
+
 const SignupForm = () => {
+  const { signinUser, isSignLoading } = useSignin();
+  const { register, getValues, formState, handleSubmit, reset } = useForm();
+  const { errors } = formState;
+
+  const onSubmitHandler = (data) => {
+    const { name, email, password, confirmPassword } = data;
+    console.log(name, email, password, confirmPassword);
+    signinUser(
+      { name, email, password, confirmPassword },
+      {
+        onSettled: () => reset(),
+      }
+    );
+  };
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit(onSubmitHandler)}>
       <FormGroup>
         <Span>
           <HiUser />
         </Span>
-        <FormInput type="text" id="name" placeholder="" />
+        <FormInput
+          type="text"
+          id="name"
+          placeholder=""
+          {...register("name", { required: "This field is required" })}
+        />
         <Label htmlFor="name">Name</Label>
+        {errors?.name?.message && <Error>{errors?.name?.message}</Error>}
       </FormGroup>
 
       <FormGroup>
         <Span>
           <HiEnvelope />
         </Span>
-        <FormInput type="email" id="email" placeholder="" />
+        <FormInput
+          type="email"
+          id="email"
+          placeholder=""
+          {...register("email", {
+            required: "This field is required",
+            pattern: {
+              value: /\S+@\S+\.\S+/,
+              message: "Please enter a valid email address",
+            },
+          })}
+        />
+
         <Label htmlFor="email">Email</Label>
-      </FormGroup>
-      <FormGroup>
-        <Span>
-          <HiLockClosed />
-        </Span>
-        <FormInput type="password" id="password" placeholder="" />
-        <Label htmlFor="password">Password</Label>
+        {errors?.email?.message && <Error>{errors?.email?.message}</Error>}
       </FormGroup>
 
       <FormGroup>
         <Span>
           <HiLockClosed />
         </Span>
-        <FormInput type="password" id="confirmpassword" placeholder="" />
+        <FormInput
+          type="password"
+          id="password"
+          placeholder=""
+          {...register("password", {
+            required: "This field is required",
+            minLength: {
+              value: 7,
+              message: "Please must be at least 8 characters",
+            },
+          })}
+        />
+        <Label htmlFor="password">Password</Label>
+        {errors?.password?.message && (
+          <Error>{errors?.password?.message}</Error>
+        )}
+      </FormGroup>
+
+      <FormGroup>
+        <Span>
+          <HiLockClosed />
+        </Span>
+        <FormInput
+          type="password"
+          id="confirmpassword"
+          placeholder=""
+          {...register("confirmPassword", {
+            required: "This field is required",
+            validate: (value) =>
+              value === getValues().password || "Password need to be matched",
+          })}
+        />
         <Label htmlFor="confirmpassword">Confirm Password</Label>
+        {errors?.confirmPassword?.message && (
+          <Error>{errors?.confirmPassword?.message}</Error>
+        )}
       </FormGroup>
 
       <Button type="submit">SignUp</Button>
