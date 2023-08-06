@@ -106,12 +106,13 @@ const Error = styled.span`
 
 const SignupForm = () => {
   const { signinUser, isSignLoading } = useSignin();
+
   const { register, getValues, formState, handleSubmit, reset } = useForm();
   const { errors } = formState;
 
   const onSubmitHandler = (data) => {
     const { name, email, password, confirmPassword } = data;
-    console.log(name, email, password, confirmPassword);
+
     signinUser(
       { name, email, password, confirmPassword },
       {
